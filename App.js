@@ -1,29 +1,34 @@
 import React, {useState } from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 
 const App = () => {
-  const [name, setName] = useState('anil');
-  const [age, setAge] = useState(22);
+  const [witchesAndWizards, setWitchesAndWizards] = useState([
+    {name: 'Harry Potter', key: 1},
+    {name: 'Hermione Granger', key: 2},
+    {name: 'Ron Weasley', key: 3},
+    {name: 'Rubeus Hagrid', key: 4},
+    {name: 'Albus Dumbledore', key: 5},
+    {name: 'Free Elf Dobby', key: 6},
+    {name: 'Sirius Black', key: 7},
+    {name: 'Neville Weasley', key: 8},
+    {name: 'Fred Weasley', key: 9},
+    {name: 'Remus Lupin', key: 10},
+    {name: 'Ginny Weasley', key: 11},
+  ]);
+  
 
   return (
     <View style={styles.container}>
-      <Text>Enter Name: </Text>
-      <TextInput 
-        multiline
-        style={styles.input}
-        placeholder='e.g. Walter White'
-        onChangeText={(val) => setName(val)}/>
-
-      <Text>Enter Age: </Text>
-      <TextInput 
-        maxLength={3}
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder='e.g. 99'
-        onChangeText={(val) => setAge(val)}/>
-
-
-      <Text>name: {name}, age: {age}</Text>
+      <ScrollView>
+        { witchesAndWizards.map((item) => {
+        return(
+          <View key={item.key}>
+            <Text style={styles.item}>{item.name}</Text>
+          </View>
+        )
+      })}
+      </ScrollView>
+      
     </View>
   );
 };
@@ -31,17 +36,16 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'mediumpurple',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: 'khaki',
   },
-  input:{
-    borderWidth: 2,
-    borderColor: '#999',
-    padding: 6,
-    margin: 8,
-    width: 200
-
+  item: {
+    margin: 12,
+    padding: 30,
+    backgroundColor: 'lightcoral',
+    fontSize: 24,
+    borderRadius: 10,
+    color: 'white'
   }
+
 });
 export default App;
