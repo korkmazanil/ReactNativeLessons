@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
 
 const App = () => {
   const [witchesAndWizards, setWitchesAndWizards] = useState([
@@ -16,18 +16,25 @@ const App = () => {
     {name: 'Ginny Weasley', key: 11},
   ]);
   
-
   return (
     <View style={styles.container}>
-      <ScrollView>
-        { witchesAndWizards.map((item) => {
+
+      <FlatList 
+       data={witchesAndWizards}
+       renderItem={({item}) => (
+        <Text style={styles.item}>{item.name}</Text>
+       )}
+      />
+
+      {/* <ScrollView>
+       { witchesAndWizards.map((item) => {
         return(
           <View key={item.key}>
             <Text style={styles.item}>{item.name}</Text>
           </View>
         )
       })}
-      </ScrollView>
+      </ScrollView> */}
       
     </View>
   );
@@ -44,7 +51,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightcoral',
     fontSize: 24,
     borderRadius: 10,
-    color: 'white'
+    color: 'white',
+    borderRadius: 10
   }
 
 });
